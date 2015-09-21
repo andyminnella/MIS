@@ -6,7 +6,7 @@ public class NewEvent : MonoBehaviour {
 
 	public GameObject masterGameObj;
 	public GameObject eventPanel;
-	public TimeTxt timeObj;
+	
 	public Text eventPanelBodyText;
 	public Text titleTxt;
 	public Text progTxt;
@@ -20,15 +20,17 @@ public class NewEvent : MonoBehaviour {
 	public int newMonth;
 
 	public string titleOfVid;
+
+    
 	 void Start()
 	{
 		masterGameObj = GameObject.Find("MasterGameObject");
 
 		//sets month time equal to timeTxt monthtime
-		oldMonth = timeObj.monthTime;
+		oldMonth = TimeTxt.monthTime;
 
 		//checks if the game is brand new and displays welcome event
-		if (timeObj.weekTime == 1 && timeObj.monthTime == 1 && timeObj.yearTime == 1)
+		if (TimeTxt.weekTime == 1 && TimeTxt.monthTime == 1 && TimeTxt.yearTime == 1)
 		{
 		Create("Welcome!" , "You have just set out into the world of STREAMING! Good luck and I hope you prove mom" +
 			" and dad wrong!");
@@ -40,7 +42,7 @@ public class NewEvent : MonoBehaviour {
 		titleTxt.text = title;
 		eventPanelBodyText.text = bodytext;
 		eventPanel.SetActive(true);
-		timeObj.paused = true;
+		TimeTxt.paused = true;
 	}
 
 	//takes in a int to determine how long before "finish video" panel shows with stats and outcome
@@ -48,8 +50,8 @@ public class NewEvent : MonoBehaviour {
 	{
 		int i;
 		int finTime;
-		i = timeAmt * 6 + Mathf.RoundToInt(timeObj.timer);
-		Debug.Log("Current time is: " + Mathf.RoundToInt(timeObj.timer));
+		i = timeAmt * 6 + Mathf.RoundToInt(TimeTxt.timer);
+		Debug.Log("Current time is: " + Mathf.RoundToInt(TimeTxt.timer));
 		Debug.Log("I want to finish at: " + i);
 		finTime = i;
 		VidMakingProc(finTime);
@@ -60,7 +62,7 @@ public class NewEvent : MonoBehaviour {
 	{
 		finVidTime = finTime;
 		creatingVid = true;
-		testTime = timeObj.timer;
+		testTime = TimeTxt.timer;
 	}
 
 
@@ -68,7 +70,7 @@ public class NewEvent : MonoBehaviour {
 	void Update()
 	{
 		//new month checker
-		newMonth = timeObj.monthTime;
+		newMonth = TimeTxt.monthTime;
 
 		float lerpValue = Mathf.Lerp (0, 100, (Time.time - testTime) * finVidTime * 0.01f);
 
@@ -79,7 +81,7 @@ public class NewEvent : MonoBehaviour {
 		}
 		else progTxt.text = "Current Progress: N/A"; 
 
-		if (Mathf.RoundToInt(timeObj.timer) >= finVidTime && creatingVid)
+		if (Mathf.RoundToInt(TimeTxt.timer) >= finVidTime && creatingVid)
 		{
 			Create("Finished Video!", "You have successfully finished "  + titleOfVid +  "! You earned 250!");
 			creatingVid = false;
@@ -101,7 +103,7 @@ public class NewEvent : MonoBehaviour {
 	public void ContinueEvent()
 
 	{
-		timeObj.paused = false;
+		TimeTxt.paused = false;
 	}
 
 

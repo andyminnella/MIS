@@ -6,17 +6,16 @@ public class TimeTxt : MonoBehaviour {
 
 	private Text timeTxt;
 	private Text currentDateTxt;
-	public float timer;
+	public static float timer;
 	private int count;
-	public int weekTime;
-	public int monthTime;
-	public int yearTime;
+	public static int weekTime,monthTime,yearTime;
+	
 	//run once variable
 	public bool runOnce;
 	//when time bar fills up this is set to true
 	public bool filled;
 
-	public bool paused;
+	public static bool paused;
 
 	//game object sprites that make up the time bar
 	public GameObject load1;
@@ -38,7 +37,7 @@ public class TimeTxt : MonoBehaviour {
 		weekTime = 1;
 		monthTime = 1;
 		yearTime = 1;
-		paused = false;
+		paused = true;
 
 	}
 	

@@ -8,18 +8,21 @@ public class MasterGameObject : MonoBehaviour {
     /// fuck u everyone
     /// </summary>
 	public static int money;
-    private TimeTxt timer = new TimeTxt();
+    
  
 	public static int progress;
     private int overhead =0;
     private int rent=0;
     private int staffCost=0;
     private bool isStreaming;
+
+
+    //event panel object
+    public NewEvent eventPanel;
     
 
 
     //shit andy added
-    public GameObject gameTime ;
     private Stream newStream = new Stream();
 
     public Button buyR2Btn;
@@ -30,6 +33,7 @@ public class MasterGameObject : MonoBehaviour {
 
     private Personnel[] employee = new Personnel[4];
     private int totalEnergy, startEnergy;
+    private int maxEnergy;
 
     private int maxEmp = 1;
     
@@ -41,7 +45,8 @@ public class MasterGameObject : MonoBehaviour {
     public GameObject moveHQBtn, stopStreamBtn;
     public Text EmpTxt, moneyTxt,streamTitle,energyTxt;
 
-    private bool energyRunOnce;
+    private bool energyRunOnce,intervalRunOnce;
+    int moneyPerStream = 0;
 
 
     
@@ -77,6 +82,24 @@ public class MasterGameObject : MonoBehaviour {
         }
         
     }
+    IEnumerator intervalTimer(int intervalTime)
+    {
+        
+        
+        yield return new WaitForSeconds(intervalTime);
+        
+        newStream.startStream(totalEnergy, strQuality.terrible, 10, 10, 10);
+        Debug.Log("interval Timer spat out $:" + newStream.getCash());
+        newStream.getCash();
+        money += newStream.getCash();
+        moneyPerStream += newStream.getCash();
+        intervalRunOnce = false;
+        
+        
+        
+        
+
+    }
     
     // checks if streaming is allowed
     public bool checkStream()
@@ -99,6 +122,7 @@ public class MasterGameObject : MonoBehaviour {
             isStreaming = true;
             stopStreamBtn.SetActive(true);
             StartCoroutine(streamTimer(totalEnergy));
+            
             startEnergy = totalEnergy;
         }
         else if(!checkStream())
@@ -108,19 +132,22 @@ public class MasterGameObject : MonoBehaviour {
         }
         
         
-        StopCoroutine(streamTimer(totalEnergy));
+        
         
     }
     //function to stop stream
     public void stopStreamButton()
     {
         StopCoroutine(streamTimer(totalEnergy));
-        newStream.startStream(startEnergy - totalEnergy, strQuality.terrible, 10, 10, 10);
-        Debug.Log(newStream.getCash());
-        money += newStream.getCash();
+        
+        
+        
+        
         isStreaming = false;
         stopStreamBtn.SetActive(false);
         Debug.Log("Stream has Ended");
+        eventPanel.Create("Finished Stream", "Congratulations you have successfully finished your stream.\nYou made: $" + moneyPerStream);
+        moneyPerStream = 0;
 
     }
 
@@ -151,6 +178,7 @@ public class MasterGameObject : MonoBehaviour {
                 numEmp++;
             }
         }
+        maxEnergy = numEmp * 99;
         return numEmp;
     }
     //calculates total energy to display on screen
@@ -162,8 +190,10 @@ public class MasterGameObject : MonoBehaviour {
             if (empList[i].getHired())
                 totalEnergy += empList[i].getEnergy();
         }
+        
         return totalEnergy;
     }
+    /// 
     #endregion
 
 
@@ -172,6 +202,8 @@ public class MasterGameObject : MonoBehaviour {
     {
 
         
+        TimeTxt.paused = true;
+        Debug.Log("timer . paused = " + TimeTxt.paused);
 		//initialize rooms and employees 0-3
 		for (int i = 0; i < 4; i++) 
 		{
@@ -214,7 +246,8 @@ public class MasterGameObject : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (!energyRunOnce && !timer.paused)
+        
+        if (!energyRunOnce && !TimeTxt.paused)
         {
             StartCoroutine(energyCounter());
             energyRunOnce = true;
@@ -223,6 +256,14 @@ public class MasterGameObject : MonoBehaviour {
         moneyTxt.text = "money: $" + money;
         
         energyTxt.text = "Total Energy: " + totalEnergy;
+        if (isStreaming && !intervalRunOnce && totalEnergy >= 4)
+        {
+            Debug.Log("interval Timer started");
+            StartCoroutine(intervalTimer(4));
+            intervalRunOnce = true;
+        }
+        else if (!isStreaming)
+            StopCoroutine(intervalTimer(4));
         
 	}
     /// <summary>
@@ -232,7 +273,7 @@ public class MasterGameObject : MonoBehaviour {
     IEnumerator energyCounter()
     {
         yield return new WaitForSeconds(4);
-        if (!isStreaming)
+        if (!isStreaming && !TimeTxt.paused)
         {
             totalEnergy++;
             Debug.Log("energyCounter Active");

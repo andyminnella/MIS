@@ -4,7 +4,7 @@ using System.Collections;
 
 public class YrlyProfitCalc : MonoBehaviour {
 	private Text profitTxt;
-	public TimeTxt timeObj;
+	
 	public float profitValue;
 	private int i;
 	// Use this for initialization
@@ -16,7 +16,7 @@ public class YrlyProfitCalc : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-		if (timeObj.yearTime > i)
+		if (TimeTxt.yearTime > i)
 		{
 			profitValue = 0;
 			i++;

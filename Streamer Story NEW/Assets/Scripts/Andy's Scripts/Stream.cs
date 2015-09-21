@@ -11,29 +11,28 @@ public class Stream : MonoBehaviour
     private int energy, cashPerStream;
     private float length;
     private bool isStreaming;
+    private int numInterval = 0;
 
-    public float interval= 5f;
+    public float interval= 4f;
     public int cashPerInt = 2;
     private MasterGameObject.strQuality quaility;
     #endregion
-
+    
     //function that starts the stream takes in energy quality skill charm comp
     public void startStream(int energy, MasterGameObject.strQuality strQuality, int skill, int charm, int comp)
     {
         cashPerInt = Random.RandomRange(1, 15);
-        int numInterval;
+        
         isStreaming = true;
-        if (energy < 10)
+        if (energy < 5)
         {
             
             Debug.Log("failed to stream, energy too low");
             return;
         }
         length = energy;
-        numInterval = (int)length / (int)interval;
-        cashPerStream = numInterval * cashPerInt;
-        
-        
+        cashPerStream = cashPerInt;
+
 
     }
     //returns cash earned from stream
