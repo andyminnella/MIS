@@ -12,7 +12,7 @@ public class MasterGameObject : MonoBehaviour {
  
 	public static int progress;
     private int overhead =0;
-    
+    private int rent=0;
     private int staffCost=0;
     private bool isStreaming;
 
@@ -30,12 +30,12 @@ public class MasterGameObject : MonoBehaviour {
     private Rooms HQ;
 
 	private Rooms[] rm = new Rooms[4];
-    
-    private Personnel[] employee = new Personnel[4];
-    private int  startEnergy;
-    
 
-    
+    private Personnel[] employee = new Personnel[4];
+    private int totalEnergy, startEnergy;
+    private int maxEnergy;
+
+    private int maxEmp = 1;
     
     public GameObject purchased1;
     public GameObject purchased2;
@@ -65,27 +65,10 @@ public class MasterGameObject : MonoBehaviour {
         perfection,
 
     }
-    ////static variables
-    private static int totalEnergy;
-    private static int rent = 0;
-    private static int maxEnergy = 99;
-    private static int maxEmp = 1, empHired = 1;
-
-	#endregion
-    #region static return functions
-    public static int getTotalEnergy() { return totalEnergy; }
-
-    public static int getMaxEnergy() { return maxEnergy; }
-
-    public static int getMaxEmp() { return maxEmp; }
-
-    public static int getEmpHired() { return empHired; }
-
-   
-
+    //
 
     
-    #endregion
+	#endregion
 
     #region stream functions
     //stops stream when energy is over
@@ -195,7 +178,7 @@ public class MasterGameObject : MonoBehaviour {
                 numEmp++;
             }
         }
-        
+        maxEnergy = numEmp * 99;
         return numEmp;
     }
     //calculates total energy to display on screen
@@ -233,7 +216,7 @@ public class MasterGameObject : MonoBehaviour {
                     rm[i].setBought(true);
                     rm[i].setCost(0);
                     employee[i].setHired(true);
-                    employee[i].setEnergy(29);
+                    employee[i].setEnergy(15);
                     break;
                 case 1:
                     rm[i].setCost(200);
@@ -253,8 +236,7 @@ public class MasterGameObject : MonoBehaviour {
 		}
 		HQ = rm [0];
         //end of shit i added
-        empHired = countEmployees(employee);
-        
+		
 		
 		money = 1000;
 		progress = 0;
@@ -264,13 +246,12 @@ public class MasterGameObject : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        maxEnergy = empHired * 99;
+        
         if (!energyRunOnce && !TimeTxt.paused)
         {
             StartCoroutine(energyCounter());
             energyRunOnce = true;
         }
-        empHired = countEmployees(employee);
         EmpTxt.text = "Employees: " + countEmployees(employee) + "/" + maxEmp;
         moneyTxt.text = "money: $" + money;
         
