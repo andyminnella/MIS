@@ -31,7 +31,7 @@ public class MasterGameObject : MonoBehaviour {
 
 	private Rooms[] rm = new Rooms[4];
     
-    private Personnel[] employee = new Personnel[4];
+    private static Personnel[] employee = new Personnel[4];
     private int  startEnergy;
     
 
@@ -213,11 +213,13 @@ public class MasterGameObject : MonoBehaviour {
     /// 
     #endregion
 
+    public static Personnel getPersonnel(int i) { return employee[i]; }
+
 
     // Use this for initialization
     void Start()
     {
-
+        
         
         TimeTxt.paused = true;
         Debug.Log("timer . paused = " + TimeTxt.paused);
@@ -234,18 +236,45 @@ public class MasterGameObject : MonoBehaviour {
                     rm[i].setCost(0);
                     employee[i].setHired(true);
                     employee[i].setEnergy(29);
+                    employee[i].setChr(15);
+                    employee[i].setComp(15);
+                    employee[i].setCost(0);
+                    employee[i].setDesc("mothher fuckin mother fucsker\n fuck this mother fuckin fucker of fuckin mothers");
+                    employee[i].setName("Your Name");
+                    employee[i].setSkill(15);
                     break;
                 case 1:
                     rm[i].setCost(200);
                     rm[i].setMaxEmp(2);
+                    employee[i].setEnergy(29);
+                    employee[i].setChr(15);
+                    employee[i].setComp(15);
+                    employee[i].setCost(0);
+                    employee[i].setDesc("mothher fuckin mother fucsker\n fuck this mother fuckin fucker of fuckin mothers");
+                    employee[i].setName("Your Name");
+                    employee[i].setSkill(15);
                     break;
                 case 2:
                     rm[i].setCost(500);
                     rm[i].setMaxEmp(4);
+                    employee[i].setEnergy(29);
+                    employee[i].setChr(15);
+                    employee[i].setComp(15);
+                    employee[i].setCost(0);
+                    employee[i].setDesc("mothher fuckin mother fucsker\n fuck this mother fuckin fucker of fuckin mothers");
+                    employee[i].setName("Your Name");
+                    employee[i].setSkill(15);
                     break;
                 case 3:
                     rm[i].setCost(800);
                     rm[i].setMaxEmp(6);
+                    employee[i].setEnergy(29);
+                    employee[i].setChr(15);
+                    employee[i].setComp(15);
+                    employee[i].setCost(0);
+                    employee[i].setDesc("mothher fuckin mother fucsker\n fuck this mother fuckin fucker of fuckin mothers");
+                    employee[i].setName("Your Name");
+                    employee[i].setSkill(15);
                     break;
             }
             
@@ -259,6 +288,7 @@ public class MasterGameObject : MonoBehaviour {
 		money = 1000;
 		progress = 0;
         totalEnergy = calcTotalEnergy(employee);
+        
 	}
     
 	
