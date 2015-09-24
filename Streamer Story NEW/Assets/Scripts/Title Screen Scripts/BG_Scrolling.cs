@@ -13,6 +13,6 @@ public class BG_Scrolling : MonoBehaviour {
 	void Update () {
 		Vector2 offset = new Vector2 (Time.time * speed, Time.time * speed / 2);
 
-		GetComponent<Image>().material.mainTextureOffset = offset;
+		GetComponent<Renderer>().material.mainTextureOffset = offset;
 	}
 }
