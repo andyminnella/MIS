@@ -146,13 +146,14 @@ public class MasterGameObject : MonoBehaviour {
             StartCoroutine(streamTimer(totalEnergy));
             
             startEnergy = totalEnergy;
+            GameObject.Find("TestStreamWindow").SetActive(false);
         }
         else if(!checkStream())
         {
             Debug.Log("Stream in progress");
             return;
         }
-        
+
         
         
         
@@ -160,17 +161,15 @@ public class MasterGameObject : MonoBehaviour {
     //function to stop stream
     public void stopStreamButton()
     {
+        streamTitle.text.Remove(0 );
         StopCoroutine(streamTimer(totalEnergy));
-        
-        
-        
         
         isStreaming = false;
         stopStreamBtn.SetActive(false);
         Debug.Log("Stream has Ended");
         eventPanel.Create("Finished Stream", "Congratulations you have successfully finished your stream.\nYou made: $" + moneyPerStream);
         moneyPerStream = 0;
-
+        
     }
 
     #endregion
