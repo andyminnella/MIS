@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Personnel : MonoBehaviour {
+public class Personnel  {
 	private bool isHired = false;
 	private string name;
 	private string description;
