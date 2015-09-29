@@ -6,10 +6,6 @@ public class HireStaff : MonoBehaviour {
     
     public Text[] comp, skill, charm, energy, cost, name, description;
     private Personnel[] employee = new Personnel[2];
-
-    int pageI = 0;
-
-    public GameObject[] bg;
      
 	// Use this for initialization
 
@@ -55,42 +51,6 @@ public class HireStaff : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        for (int i = 0; i < comp.Length; i++)
-        {
-
-            comp[i].text = employee[i].getComp().ToString();
-            skill[i].text = employee[i].getSkill().ToString();
-            charm[i].text = employee[i].getChr().ToString();
-            energy[i].text = employee[i].getEnergy().ToString();
-            cost[i].text = "Cost " + employee[i].getCost().ToString() + " /month";
-            name[i].text = employee[i].getName();
-            description[i].text = employee[i].getDesc();
-
-        }
-        if (pageI < 0)
-            pageI = 1;
-        
-        if (pageI > 1)
-            pageI = 0;
-        if (pageI == 1)
-        {
-            bg[1].SetActive(true);
-            bg[0].SetActive(false);
-        }
-        else
-        {
-            bg[0].SetActive(true);
-            bg[1].SetActive(false);
-        }
-
+	
 	}
-
-    public void nextBtn()
-    {
-        pageI++;
-    }
-    public void prevBtn()
-    {
-        pageI--;
-    }
 }
