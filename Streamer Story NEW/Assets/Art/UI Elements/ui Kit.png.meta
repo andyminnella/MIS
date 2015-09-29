@@ -1,0 +1,111 @@
+fileFormatVersion: 2
+guid: b9a5dd5fea438f146a4808b5322b4251
+timeCreated: 1443478871
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Btn_Navy
+    21300002: Btn_outline
+    21300004: Btn_lB
+    21300006: div_vert
+    21300008: div_horizontal
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: Btn_Navy
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 444
+        width: 380
+        height: 56
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Btn_outline
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 374
+        width: 320
+        height: 48
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 2, y: 2, z: 2, w: 2}
+    - name: Btn_lB
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 294
+        width: 320
+        height: 48
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 3, y: 3, z: 3, w: 3}
+    - name: div_vert
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 115
+        width: 1
+        height: 56
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: div_horizontal
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 210
+        width: 110
+        height: 1
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
