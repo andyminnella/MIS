@@ -68,19 +68,21 @@ public class HireStaff : MonoBehaviour {
 
         }
         if (pageI < 0)
-            pageI = 1;
-        
-        if (pageI > 1)
+            pageI = bg.Length -1;
+
+        if (pageI > bg.Length - 1)
             pageI = 0;
-        if (pageI == 1)
+        switch (pageI )
         {
-            bg[1].SetActive(true);
-            bg[0].SetActive(false);
-        }
-        else
-        {
-            bg[0].SetActive(true);
-            bg[1].SetActive(false);
+            case 1:
+                bg[1].SetActive(true);
+                bg[0].SetActive(false);
+                break;
+        
+            case 0:
+                bg[0].SetActive(true);
+                bg[1].SetActive(false);
+                break;
         }
 
 	}
