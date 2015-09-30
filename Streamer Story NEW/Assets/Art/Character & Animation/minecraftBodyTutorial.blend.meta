@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: d50026881709d8c4795632060efde497
-timeCreated: 1443474164
+guid: d72b3948e1a2c1a42822f601fe613b35
+timeCreated: 1443557294
 licenseType: Free
 ModelImporter:
   serializedVersion: 18
@@ -33,6 +33,8 @@ ModelImporter:
     400024: Spine
     4300000: Cube
     7400000: Default Take
+    7400002: Idle
+    7400004: Walk
     9500000: //RootNode
     13700000: Cube
   materials:
@@ -54,7 +56,111 @@ ModelImporter:
     animationScaleError: .5
     animationWrapMode: 0
     extraExposedTransformPaths: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Idle
+      takeName: Idle
+      firstFrame: 0
+      lastFrame: 95
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Spine
+        weight: 1
+      - path: Armature/Spine/Bone
+        weight: 1
+      - path: Armature/Spine/Bone/Bone_001
+        weight: 1
+      - path: Armature/Spine/Bone_002
+        weight: 1
+      - path: Armature/Spine/Bone_002/Bone_003
+        weight: 1
+      - path: Armature/Spine/Bone_004
+        weight: 1
+      - path: Armature/Spine/Bone_004/Bone_005
+        weight: 1
+      - path: Armature/Spine/Bone_006
+        weight: 1
+      - path: Armature/Spine/Bone_006/Bone_007
+        weight: 1
+      - path: Armature/Spine/Head
+        weight: 1
+      - path: Cube
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Walk
+      takeName: Walk
+      firstFrame: 0
+      lastFrame: 49
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Spine
+        weight: 1
+      - path: Armature/Spine/Bone
+        weight: 1
+      - path: Armature/Spine/Bone/Bone_001
+        weight: 1
+      - path: Armature/Spine/Bone_002
+        weight: 1
+      - path: Armature/Spine/Bone_002/Bone_003
+        weight: 1
+      - path: Armature/Spine/Bone_004
+        weight: 1
+      - path: Armature/Spine/Bone_004/Bone_005
+        weight: 1
+      - path: Armature/Spine/Bone_006
+        weight: 1
+      - path: Armature/Spine/Bone_006/Bone_007
+        weight: 1
+      - path: Armature/Spine/Head
+        weight: 1
+      - path: Cube
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
     isReadable: 1
   meshes:
     lODScreenPercentages: []
