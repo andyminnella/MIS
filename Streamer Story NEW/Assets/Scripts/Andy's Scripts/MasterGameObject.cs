@@ -4,6 +4,11 @@ using UnityEngine.UI;
 
 public class MasterGameObject : MonoBehaviour {
 	#region Variables
+    //making this instance of Master game object a singleton
+    public static MasterGameObject instance;
+
+    public string playerName = "playerName";
+    
     /// <summary>
     /// fuck u everyone
     /// </summary>
@@ -31,9 +36,9 @@ public class MasterGameObject : MonoBehaviour {
 
 	private Rooms[] rm = new Rooms[4];
     
-    private static Personnel[] employee = new Personnel[4];
+    private Personnel[] employee = new Personnel[4];
     private int  startEnergy;
-    
+    public Personnel getEmp(int i){return employee [i];}
 
     
     
@@ -141,13 +146,14 @@ public class MasterGameObject : MonoBehaviour {
             StartCoroutine(streamTimer(totalEnergy));
             
             startEnergy = totalEnergy;
+            GameObject.Find("TestStreamWindow").SetActive(false);
         }
         else if(!checkStream())
         {
             Debug.Log("Stream in progress");
             return;
         }
-        
+
         
         
         
@@ -155,17 +161,15 @@ public class MasterGameObject : MonoBehaviour {
     //function to stop stream
     public void stopStreamButton()
     {
+        streamTitle.text.Remove(0 );
         StopCoroutine(streamTimer(totalEnergy));
-        
-        
-        
         
         isStreaming = false;
         stopStreamBtn.SetActive(false);
         Debug.Log("Stream has Ended");
         eventPanel.Create("Finished Stream", "Congratulations you have successfully finished your stream.\nYou made: $" + moneyPerStream);
         moneyPerStream = 0;
-
+        
     }
 
     #endregion
@@ -213,13 +217,17 @@ public class MasterGameObject : MonoBehaviour {
     /// 
     #endregion
 
-    public static Personnel getPersonnel(int i) { return employee[i]; }
 
-
-    // Use this for initialization
-    void Start()
+    void Awake()
     {
+        DontDestroyOnLoad(this.gameObject);
+        instance = this;
+    }
+    // Use this for initialization
+ 
         
+        void Start(){
+
         
         TimeTxt.paused = true;
         Debug.Log("timer . paused = " + TimeTxt.paused);
@@ -239,8 +247,9 @@ public class MasterGameObject : MonoBehaviour {
                     employee[i].setChr(15);
                     employee[i].setComp(15);
                     employee[i].setCost(0);
-                    employee[i].setDesc("mothher fuckin mother fucsker\n fuck this mother fuckin fucker of fuckin mothers");
-                    employee[i].setName("Your Name");
+                    employee[i].setDesc("HEY I LIVE IN MY PARENTS BASEMENT\n ARENT I SO FUCKING COOL");
+                    employee[i].setEXP(9);
+                    employee[i].setName(playerName);
                     employee[i].setSkill(15);
                     break;
                 case 1:
@@ -249,9 +258,10 @@ public class MasterGameObject : MonoBehaviour {
                     employee[i].setEnergy(29);
                     employee[i].setChr(15);
                     employee[i].setComp(15);
-                    employee[i].setCost(0);
-                    employee[i].setDesc("mothher fuckin mother fucsker\n fuck this mother fuckin fucker of fuckin mothers");
-                    employee[i].setName("Your Name");
+                    employee[i].setCost(250);
+                    employee[i].setDesc("HEY I LIVE IN MY PARENTS BASEMENT\n ARENT I SO FUCKING COOL");
+                    employee[i].setEXP(9);
+                    employee[i].setName("Goat Nigger");
                     employee[i].setSkill(15);
                     break;
                 case 2:
@@ -260,9 +270,10 @@ public class MasterGameObject : MonoBehaviour {
                     employee[i].setEnergy(29);
                     employee[i].setChr(15);
                     employee[i].setComp(15);
-                    employee[i].setCost(0);
-                    employee[i].setDesc("mothher fuckin mother fucsker\n fuck this mother fuckin fucker of fuckin mothers");
-                    employee[i].setName("Your Name");
+                    employee[i].setCost(450);
+                    employee[i].setDesc("HEY I LIVE IN MY PARENTS BASEMENT\n ARENT I SO FUCKING COOL");
+                    employee[i].setEXP(9);
+                    employee[i].setName("Billy");
                     employee[i].setSkill(15);
                     break;
                 case 3:
@@ -271,14 +282,15 @@ public class MasterGameObject : MonoBehaviour {
                     employee[i].setEnergy(29);
                     employee[i].setChr(15);
                     employee[i].setComp(15);
-                    employee[i].setCost(0);
-                    employee[i].setDesc("mothher fuckin mother fucsker\n fuck this mother fuckin fucker of fuckin mothers");
-                    employee[i].setName("Your Name");
+                    employee[i].setCost(1000);
+                    employee[i].setDesc("HEY I LIVE IN MY PARENTS BASEMENT\n ARENT I SO FUCKING COOL");
+                    employee[i].setEXP(9);
+                    employee[i].setName("Sally");
                     employee[i].setSkill(15);
                     break;
             }
-            
 
+            Debug.Log("employee element "+i+" in master gameObject       " + employee[i].ToString());
 		}
 		HQ = rm [0];
         //end of shit i added
@@ -288,7 +300,6 @@ public class MasterGameObject : MonoBehaviour {
 		money = 1000;
 		progress = 0;
         totalEnergy = calcTotalEnergy(employee);
-        
 	}
     
 	
