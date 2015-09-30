@@ -6,6 +6,8 @@ public class HireStaff : MonoBehaviour {
     
     public Text[] comp, skill, charm, energy, cost, name, description;
     private Personnel[] employee = new Personnel[2];
+    private int page = 0;
+    public GameObject[] bg;
      
 	// Use this for initialization
 
@@ -43,6 +45,7 @@ public class HireStaff : MonoBehaviour {
 
         }
         Debug.Log(employee[1] + "employee element 1");
+        
 	}
     void OnDisable()
     {
@@ -51,6 +54,29 @@ public class HireStaff : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-	
+        if (page < 0)
+        {
+            page = bg.Length - 1;
+        }
+        if (page > bg.Length -1)
+            page = 0;
+
+        switch (page)
+        {
+            case 0 :
+                bg[1].SetActive(false);
+                bg[0].SetActive(true);
+                break;
+
+            case 1 :
+                bg[0].SetActive(false);
+                bg[1].SetActive(true);
+                break;
+
+        }
 	}
+   public void nextBtn(){ page++;
+   Debug.Log("page number " + page);}
+   public void prevBtn() { page--; 
+   Debug.Log("page number " + page);}
 }
