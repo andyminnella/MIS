@@ -5,32 +5,39 @@ public class TouchInput : MonoBehaviour {
     Ray ray;
     RaycastHit hit;
     float ms = 0.1f;
-
+    private GameObject enemy;
+    public static Touch curTouch;
 	// Use this for initialization
-	void Start () {
 	
-	}
 	
 	// Update is called once per frame
-	void Update () {
+    void Update()
+    {
         if (Input.touchCount > 0)
         {
-            Debug.Log(Input.touchCount);
-            ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+            foreach (Touch touch in Input.touches)
             {
-                Debug.DrawRay(ray.origin, ray.direction * 20, Color.red);
-                Debug.Log("hit something");
-                if (hit.transform.gameObject.tag == "enemy")
+                curTouch = Input.GetTouch(0);
+                Ray ray = Camera.main.ScreenPointToRay(touch.position);
+                Physics.Raycast(ray, out hit);
+                Debug.DrawRay(ray.origin, ray.direction,Color.red);
+                if (hit.collider != null)
                 {
-                    Vector3 blah = hit.transform.position;
-                    Debug.Log("hit enemy");
-                    hit.transform.position = Vector3.Lerp(blah, new Vector3(Input.GetTouch(0).position.x, Input.GetTouch(0).position.y, hit.transform.gameObject.transform.position.z),ms);
-                    Debug.Log(hit.transform.gameObject.transform.position.z);
+                    
+                    if (hit.collider.tag == "enemy")
+                    {
+                         enemy = hit.collider.transform.gameObject;
+                        Debug.Log("enemy hit by raycast");
+                        
+                    }
                 }
+                else
+                    Debug.Log("hit is null");
+                
+                if(enemy != null)
+                    enemy.transform.position = Camera.main.ScreenToWorldPoint(touch.position);
+                
             }
-            
         }
-        
-	}
+    }
 }
