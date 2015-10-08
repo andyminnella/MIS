@@ -1,15 +1,19 @@
 fileFormatVersion: 2
-guid: df992268385fc18489b248eb0d835d18
-timeCreated: 1444112035
+guid: c97c8160f7a520842940be72f19928d4
+timeCreated: 1444283978
 licenseType: Free
 ModelImporter:
   serializedVersion: 18
   fileIDToRecycleName:
     100000: //RootNode
+    100002: Cube_002
+    100004: Empty
     400000: //RootNode
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: Plane
+    400002: Cube_002
+    400004: Empty
+    2300000: Cube_002
+    3300000: Cube_002
+    4300000: Cube_002
     7400000: Default Take
     9500000: //RootNode
   materials:
@@ -40,7 +44,7 @@ ModelImporter:
     addColliders: 0
     importBlendShapes: 1
     swapUVChannels: 0
-    generateSecondaryUV: 1
+    generateSecondaryUV: 0
     useFileUnits: 1
     optimizeMeshForGPU: 1
     keepQuads: 0
