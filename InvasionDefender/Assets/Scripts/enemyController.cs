@@ -3,6 +3,7 @@ using System.Collections;
 
 public class enemyController : MonoBehaviour {
     bool held = false;
+    Vector3 mousePos;
 	// Use this for initialization
 	void Start () {
 	
@@ -14,12 +15,16 @@ public class enemyController : MonoBehaviour {
         Debug.Log("enemy entered a collision with ");
     }
 	void Update () {
-        Vector3 mousePos = new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y-1.5f, this.gameObject.transform.position.z);
-        
+#if UNITY_EDITOR
+        mousePos = new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y-4.5f, this.gameObject.transform.position.z);
+#endif
+        if(Input.touchCount > 0)
+            mousePos = new Vector3(Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position).x, Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position).y - 4.5f, this.gameObject.transform.position.z);
         if (held)
         {
             
             this.gameObject.transform.position = mousePos;
+            mousePos = new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y, this.gameObject.transform.position.z);
         }
         if (this.gameObject.transform.position.y < 3.429999)
         {
@@ -30,33 +35,38 @@ public class enemyController : MonoBehaviour {
     {
         Debug.Log("touchUp() being called");
         Debug.Log("You let go of a " + this.tag + " Object.");
+        if (held)
+            held = false;
         
     }
     public void touchStart()
     {
         Debug.Log("touchStart() being called");
         Debug.Log("You are touching a " + this.tag + " Object.");
-        
-        held = true;
+        if(!held)
+            held = true;
     }
     public void touchMove()
     {
         Debug.Log("touchMove() being called");
         Debug.Log("You are touching a " + this.tag + " Object.");
-        
-        held = true;
+
+        if (!held)
+            held = true;
     }
     public void touchHold()
     {
         Debug.Log("touchHold() being called");
         Debug.Log("You are holding a " + this.tag + " Object.");
-        held = true;
+        if (!held)
+            held = true;
     }
     public void touchExit()
     {
         Debug.Log("touchExit() being called");
         Debug.Log("You are touching a " + this.tag + " Object.");
-        held = false;
+        if (held)
+            held = false;
     }
     
 
