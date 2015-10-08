@@ -44,9 +44,10 @@ public class TouchController : MonoBehaviour
                 }
                 if (Input.GetMouseButton(0))
                 {
-                    reciever.SendMessage("touchMove", SendMessageOptions.DontRequireReceiver);
-                    Debug.Log("touch has moved");
+                    reciever.SendMessage("touchHold", SendMessageOptions.DontRequireReceiver);
+                    Debug.Log("touch is held");
                 }
+
 
             }
 
@@ -58,6 +59,7 @@ public class TouchController : MonoBehaviour
                     Debug.Log("touch has exited");
                 }
             }
+        }
 #endif
 
             if (Input.touchCount > 0)
@@ -75,7 +77,7 @@ public class TouchController : MonoBehaviour
                         touchList.Add(reciever);
                         if (touch.phase == TouchPhase.Began)
                         {
-                            reciever.SendMessage("touchDown", SendMessageOptions.DontRequireReceiver);
+                            reciever.SendMessage("touchStart", SendMessageOptions.DontRequireReceiver);
                             Debug.Log("touch press active");
                         }
                         if (touch.phase == TouchPhase.Ended)
@@ -93,6 +95,11 @@ public class TouchController : MonoBehaviour
                             reciever.SendMessage("touchExit", SendMessageOptions.DontRequireReceiver);
                             Debug.Log("touch has exited");
                         }
+                        if (touch.phase == TouchPhase.Stationary)
+                        {
+                            reciever.SendMessage("touchStat", SendMessageOptions.DontRequireReceiver);
+                            Debug.Log("touch has not moved");
+                        }
                     }
                 }
                 foreach (GameObject g in touchesOld)
@@ -106,4 +113,4 @@ public class TouchController : MonoBehaviour
             }
         }
     }
-}
+
