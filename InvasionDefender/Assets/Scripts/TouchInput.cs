@@ -14,7 +14,11 @@ public class TouchInput : MonoBehaviour {
     private void calcFlick(float t, Vector3 start, Vector3 end, GameObject enmy)
     {
         float xF, yF;
-        xF = ((end.x - start.x) * -0.8f)/t;
+        xF = ((end.x - start.x) )/t;
+        if (start.x > end.x)
+            xF *= -1;
+        else
+            xF *= -1;
         yF = ((end.y - start.y) * 1.3f) / t;
         Vector3 force = new Vector3(xF,yF,0f);
         enmy.GetComponent<Rigidbody>().AddForce(force);
